@@ -1,0 +1,29 @@
+/* Add this CSS to your stylesheet */
+/* Navbar Brand */
+.navbar-brand img {
+    transition: transform 0.3s ease;
+}
+.navbar-brand img:hover {
+    transform: scale(1.1);
+}
+
+/* Navbar Links */
+.navbar-nav .nav-link {
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+.navbar-nav .nav-link:hover {
+    color: #f57c00;
+}
+
+/* Logout Button */
+.btn-logout {
+    background-color: #f57c00;
+    border-color: #f57c00;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+.btn-logout:hover {
+    background-color: #e65100;
+}

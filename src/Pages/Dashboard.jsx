@@ -19,7 +19,6 @@ function Dashboard({ }) {
     <>
       <Header dashboard={"dashboard"} />
       <h2 className='mt-5 mt-3'>Hi<span style={{ color: "danger" }}> {userName}, </span>Welcome to learnIt</h2>
-      <Link to="/Notebank" style={{ textDecoration: "none" }}><Button>NoteBank</Button></Link>
 
       <Row>
         <Col md={8} lg={8}>
@@ -27,6 +26,14 @@ function Dashboard({ }) {
         </Col>
         <Col md={4} lg={4}>
           <Myprofile />
+        </Col>
+      </Row>
+
+      <Row className="bg-primary p-4 rounded" style={{marginTop:"20px"}}>
+        <Col className="d-flex justify-content-center">
+          <Link to="/Notebank" style={{ textDecoration: "none" }}>
+            <Button variant="primary" className="fw-bold rounded-pill px-4 py-2 shadow-lg" style={{ fontSize: '1.5rem' }}>NoteBank</Button>
+          </Link>
         </Col>
       </Row>
     </>

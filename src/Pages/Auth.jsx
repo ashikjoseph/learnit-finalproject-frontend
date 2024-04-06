@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import authImage from '../Assets/istockphoto-1409722748-170667a.webp'
 import { Form } from 'react-bootstrap';
 import { loginAPI, registerAPI } from '../services/allAPI';
+import { isAuthTokenContext } from '../context/ContextShare';
 
 
 function Auth({ register }) {
+  const { isAuthToken, setIsAuthToken } = useContext(isAuthTokenContext)
   const registerForm = register ? true : false;
   const navigate = useNavigate()
   const [userData, setUserData] = useState({
@@ -20,10 +22,10 @@ function Auth({ register }) {
     if (!username || !email || !password) {
       alert("Please fill the form completely")
     }
-    else{
+    else {
       const result = await registerAPI(userData);
       console.log(result)
-      if(result.status === 200){
+      if (result.status === 200) {
         console.log(result)
         alert("User registered successfully")
         setUserData({
@@ -33,35 +35,35 @@ function Auth({ register }) {
         })
         navigate('/login')
       }
-      else{
+      else {
         alert(result.response.data)
       }
-     
+
     }
   }
 
-  const handleLogin = async(e)=>{
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const {email, password}=userData;
-    if(!email || !password){
+    const { email, password } = userData;
+    if (!email || !password) {
       alert("Please fill the form completely")
     }
-    else{
+    else {
       const result = await loginAPI(userData);
-      if(result.status === 200){
+      if (result.status === 200) {
         console.log(result)
-        sessionStorage.setItem("existinguser",JSON.stringify(result.data.existingUser));
+        sessionStorage.setItem("existinguser", JSON.stringify(result.data.existingUser));
         sessionStorage.setItem("token", result.data.token)
-
+        setIsAuthToken(true)
         alert("User logged in successfully")
         setUserData({
-          username:"",
-          email:"",
-          password:""
+          username: "",
+          email: "",
+          password: ""
         })
         navigate('/')
       }
-      else{
+      else {
         alert(result.response.data)
       }
     }
@@ -99,7 +101,7 @@ function Auth({ register }) {
                           onChange={(e) => setUserData({ ...userData, username: e.target.value })}
                           type="text"
                           placeholder="username"
-                          style={{width:"200px"}}
+                          style={{ width: "200px" }}
                         />
                       </Form.Group>
                     }
@@ -110,7 +112,7 @@ function Auth({ register }) {
                         onChange={(e) => setUserData({ ...userData, email: e.target.value })}
                         type="text"
                         placeholder="email"
-                        style={{width:"200px"}}
+                        style={{ width: "200px" }}
                       />
                     </Form.Group>
                     <Form.Group md="4" controlId="validationCustom01">
@@ -120,7 +122,7 @@ function Auth({ register }) {
                         onChange={(e) => setUserData({ ...userData, password: e.target.value })}
                         type="password"
                         placeholder="password"
-                        style={{width:"200px"}}
+                        style={{ width: "200px" }}
                       />
                     </Form.Group>
                   </Form>
@@ -131,9 +133,9 @@ function Auth({ register }) {
                         <p className='me-2'>Already a user? click here to <Link to="/login" style={{ textDecoration: "none" }}>Login</Link></p>
                       </div> :
                       <div>
-                        
-                          <button className='btn btn-warning rounded mt-3 ms-2' onClick={handleLogin}>Login</button>
-                       
+
+                        <button className='btn btn-warning rounded mt-3 ms-2' onClick={handleLogin}>Login</button>
+
 
                         <p className='ms-2'>Already a user? click here to <Link to="/register" style={{ textDecoration: "none" }}>Register</Link></p>
                       </div>
