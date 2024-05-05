@@ -30,6 +30,7 @@ function Dashboard({ }) {
       </Row>
 
       <Row className="bg-primary p-4 rounded" style={{marginTop:"20px"}}>
+        <h4>Explore Notebank</h4>
         <Col className="d-flex justify-content-center">
           <Link to="/Notebank" style={{ textDecoration: "none" }}>
             <Button variant="primary" className="fw-bold rounded-pill px-4 py-2 shadow-lg" style={{ fontSize: '1.5rem' }}>NoteBank</Button>
