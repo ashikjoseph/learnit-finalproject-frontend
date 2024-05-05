@@ -49,6 +49,7 @@ function Notebank() {
           <i className="fa-solid fa-magnifying-glass fa-rotate-90" style={{ marginLeft: '-45px' }}></i>
         </div>
       </div>
+      <div style={{marginBottom:"20px"}}>
       <Row className='m-5'>
 
         {
@@ -70,6 +71,7 @@ function Notebank() {
             </div>
         }
       </Row>
+      </div>
     </>
   );
 }

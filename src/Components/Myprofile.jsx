@@ -20,13 +20,13 @@ function Profile() {
         localStorage.setItem(name, value);
     };
 
-    // Submit profile data (for demonstration purposes)
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Profile data submitted:', profileData);
         // You can perform further actions here, such as sending data to a backend if needed
         
-        // Display an alert indicating that the profile has been updated
+        
         alert('Profile has been updated!');
     };
 
@@ -67,6 +67,7 @@ function Profile() {
 }
 
 export default Profile;
+
 
 
 

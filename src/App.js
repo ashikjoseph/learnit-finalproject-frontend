@@ -19,7 +19,8 @@ function App() {
         <Route path='/login' element={<Auth />} />
         <Route path='/register' element={<Auth register={"register"} />} />
         <Route path='/notebank' element={<Notebank />} />
-        <Route path='/dashboard' element={isAuthToken? <Dashboard/> : <Home/>} />
+        <Route path='/dashboard' element={ <Dashboard/>} />
+        {/* <Route path='/dashboard' element={isAuthToken? <Dashboard/> : <Home/>} /> */}
         <Route path='/payment' element={<Payment/>} />
       </Routes>
       <Footer />
