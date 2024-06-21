@@ -9,6 +9,8 @@ import Dashboard from './Pages/Dashboard';
 import { useContext } from 'react';
 import { isAuthTokenContext } from './context/ContextShare';
 import Payment from './Pages/Payment';
+import ViewPdf from './Pages/ViewPdf';
+
 
 function App() {
   const {isAuthToken, setIsAuthToken}=useContext(isAuthTokenContext)
@@ -18,10 +20,11 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Auth />} />
         <Route path='/register' element={<Auth register={"register"} />} />
-        <Route path='/notebank' element={<Notebank />} />
+        <Route path='/notebank' element={isAuthToken? <Notebank/> :<Home/>} />
         <Route path='/dashboard' element={ <Dashboard/>} />
-        {/* <Route path='/dashboard' element={isAuthToken? <Dashboard/> : <Home/>} /> */}
+        <Route path='/dashboard' element={isAuthToken? <Dashboard/> : <Home/>} />
         <Route path='/payment' element={<Payment/>} />
+        <Route path="/viewpdf" element={<ViewPdf />} />
       </Routes>
       <Footer />
     </div>

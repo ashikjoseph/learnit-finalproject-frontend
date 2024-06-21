@@ -63,23 +63,28 @@ function Home() {
                     </div>
                 </Row>
                 {
-                    isLoggedIn ?
-                        <Link to='/dashboard'>
-                            <Button className='btn' style={{ cursor: "pointer", marginTop: "-300px", marginLeft: "575px" }}>Logged as a learnIt user</Button>
-                        </Link>
-                        :
+                    isLoggedIn ? (
+                        <>
+                            <div className='d-flex justify-content-center align-content center gap-3'>
+                                <Link to='/dashboard'>
+                                    <Button className='btn' style={{ marginTop: '-350px', backgroundColor: '#ffc107', color: 'black', fontWeight: 'bold', padding: '12px 24px', fontSize: '1.2rem', borderRadius: '8px', marginRight: '10px' }}>Add Notes</Button>
+                                </Link>
+                                <Link to='/notebank'>
+                                    <Button className='btn' style={{ marginTop: '-350px', backgroundColor: '#ffc107', color: 'black', fontWeight: 'bold', padding: '12px 24px', fontSize: '1.2rem', borderRadius: '8px' }}>Notebank</Button>
+                                </Link>
+                            </div>
+                        </>
+                    ) : (
                         <Row>
                             <div style={{ fontSize: "10px", marginTop: "-230px", height: "50px" }} className='d-flex justify-content-center'>
-                                <Link to='/payment'>
-                                    <Button style={{ cursor: "pointer", height: "40px" }} className='btn'>Subscribe</Button>
-                                </Link>
                                 <Link to='/login'>
-                                    <Button className='btn ms-3' style={{ cursor: "pointer" }}>Start your trial</Button>
+                                    <Button className='btn ms-3' style={{ cursor: "pointer" }}>Get Started</Button>
                                 </Link>
                             </div>
                         </Row>
-
+                    )
                 }
+
 
             </div>
 

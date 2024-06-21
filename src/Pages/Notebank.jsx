@@ -41,7 +41,7 @@ function Notebank() {
   return (
     <>
       <div className="d-flex justify-content-center align-items-center flex-column mt-5">
-        <h2>Uploads</h2>
+        <h2>Notebank</h2>
         <div className="mt-5 w-25 d-flex">
           <input type="text" className="form-control" placeholder="Search notes by title"
             onChange={(e) => setSearchKey(e.target.value)}

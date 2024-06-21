@@ -29,8 +29,8 @@ function Header({ dashboard }) {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <NavLink to="/" className="nav-link">Home</NavLink>
-                        <NavLink to="/payment" className="nav-link">Subscription</NavLink>
-                        <NavLink to="/register" className="nav-link">Start Trial</NavLink>
+                        <NavLink to="/register" className="nav-link">Add notes</NavLink>
+                        <NavLink to="/register" className="nav-link">Notebank</NavLink>
                     </Nav>
                 </Navbar.Collapse>
                 {isDashboard && (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import ToastNotification from '../Components/ToastNotification';
 import './style1.css';
 
@@ -7,19 +7,21 @@ function Payment() {
     const [amount] = useState('100'); // Setting amount to a fixed value of '100'
     const [showToast, setShowToast] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+    const { note } = location.state || {};
 
     const handleSubmit = (e) => {
         e.preventDefault();
         var options = {
             key: "rzp_test_4wG56zx78jQ4WI",
             key_secret: "ECMxuuBPWcGQZEVU7AZU6BjH",
-            amount: amount * 100, 
+            amount: amount * 100,
             currency: "INR",
             name: "LearnIt",
             description: "subscription payment",
             handler: function (response) {
                 setShowToast(true);
-                navigate("/register");
+                navigate("/viewpdf", { state: { note } });
             },
             prefill: {
                 name: "Ashik",
@@ -41,7 +43,7 @@ function Payment() {
     return (
         <div className="payment-container">
             <div className="cardp">
-                <h2>Subscrbe Us</h2>
+                <h2>Make Payment</h2>
                 <br />
                 <p>Amount: {amount}</p>
                 <br />
@@ -53,6 +55,7 @@ function Payment() {
 }
 
 export default Payment;
+
 
 
 
