@@ -1,0 +1,60 @@
+/* Footer Container */
+.footer {
+    padding: 20px; /* Padding around the footer content */
+    background-color: #343a40; /* Dark background color */
+    color: #ffffff; /* White text color */
+}
+
+/* Footer Links */
+.footer ul.list-inline {
+    padding-left: 0; /* Remove default padding */
+    margin-bottom: 10px; /* Adjust bottom margin */
+}
+
+.footer ul.list-inline li {
+    display: inline-block; /* Display links horizontally */
+    margin-right: 15px; /* Adjust right margin between links */
+}
+
+.footer ul.list-inline li a {
+    color: #ffffff; /* White text color for links */
+    text-decoration: none; /* Remove underline */
+}
+
+.footer ul.list-inline li a:hover {
+    color: #ffc107; /* Yellow color on hover */
+    text-decoration: none; /* Remove underline on hover */
+}
+
+/* Social Icons */
+.footer ul.list-inline.d-flex.justify-content-end {
+    padding-left: 0; /* Remove default padding */
+}
+
+.footer ul.list-inline.d-flex.justify-content-end li {
+    margin-left: 15px; /* Adjust left margin between icons */
+}
+
+.footer ul.list-inline.d-flex.justify-content-end li a {
+    color: #ffffff; /* White text color for icons */
+    font-size: 20px; /* Adjust icon size */
+}
+
+.footer ul.list-inline.d-flex.justify-content-end li a:hover {
+    color: #ffc107; /* Yellow color on hover */
+    text-decoration: none; /* Remove underline on hover */
+}
+
+/* Copyright Text */
+.footer p {
+    margin-bottom: 0; /* Remove bottom margin */
+}
+
+.footer p a {
+    color: #ffffff; /* White text color for link */
+    text-decoration: none; /* Remove underline */
+}
+
+.footer p a:hover {
+    text-decoration: underline; /* Underline on hover */
+}

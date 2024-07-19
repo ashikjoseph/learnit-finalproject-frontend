@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import Notesection from '../Components/Notesection';
 import { allNoteApi } from '../services/allAPI';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; import { useNavigate } from 'react-router-dom';
+import { isAuthTokenContext } from '../context/ContextShare';
+import { useContext } from 'react';
+import './notebank.css';
 
 function Notebank() {
-   const [isToken, setIsToken] = useState(false)
+  const [isToken, setIsToken] = useState(false)
   const [searchKey, setSearchKey] = useState("")
   const [allNote, setAllNote] = useState([]);
+  const { setIsAuthToken } = useContext(isAuthTokenContext);
+  const navigate = useNavigate();
 
   const getAllNotes = async () => {
     if (sessionStorage.getItem('token')) {
@@ -31,46 +36,57 @@ function Notebank() {
     getAllNotes();
   }, [searchKey]);
 
-   useEffect(() => {
+  useEffect(() => {
     if (sessionStorage.getItem("token")) {
       setIsToken(true)
     }
   })
   console.log("==searchkey==", searchKey)
 
+  const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("existingUser");
+    setIsAuthToken(false);
+    navigate('/');
+  };
+
   return (
     <>
-      <div className="d-flex justify-content-center align-items-center flex-column mt-5">
-        <h2>Notebank</h2>
-        <div className="mt-5 w-25 d-flex">
-          <input type="text" className="form-control" placeholder="Search notes by title"
+      <div className="notebank-container">
+        <Link to="/dashboard" className="dashboard-button">
+        <i class="fa-solid fa-arrow-right" style={{marginRight:"5px"}}></i>Dashboard
+        </Link>
+        <button className='btn btn-warning btn-logout' onClick={handleLogout}>Logout</button>
+        <h2 className="notebank-header">Notebank</h2>
+        <div className="notebank-search position-relative">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search notes by title"
             onChange={(e) => setSearchKey(e.target.value)}
           />
-          <i className="fa-solid fa-magnifying-glass fa-rotate-90" style={{ marginLeft: '-45px' }}></i>
+          <i className="fa-solid fa-magnifying-glass fa-rotate-90"></i>
         </div>
       </div>
-      <div style={{marginBottom:"20px"}}>
-      <Row className='m-5'>
-
-        {
-          allNote.length > 0 ?
+      <div style={{ marginBottom: "20px" }}>
+        <Row className='m-5'>
+          {allNote.length > 0 ?
             allNote.map((item) => (
-              <Col sm={12} lg={4} md={4}>
+              <Col sm={12} lg={3} md={3} key={item.id} className="notebank-row">
                 <Notesection note={item} />
               </Col>
             )) :
-             <div>
-              {
-                isToken?
-                <p>No notes uploaded yet</p>:
-                <div className='d-flex justify-content-center align-items-center flex-column'>
+            <div>
+              {isToken ?
+                <p>No notes uploaded yet</p> :
+                <div className='notebank-no-notes'>
                   <img src="https://t4.ftcdn.net/jpg/01/19/11/55/360_F_119115529_mEnw3lGpLdlDkfLgRcVSbFRuVl6sMDty.jpg" alt="" height={"300px"} width={"400px"} />
-                  <p className='text-danger fs-4'>Please <Link style={{textDecoration:"none"}} to={'/login'} >Login</Link>  to view notes</p>
+                  <p>Please <Link style={{ textDecoration: "none" }} to={'/login'}>Login</Link> to view notes</p>
                 </div>
               }
             </div>
-        }
-      </Row>
+          }
+        </Row>
       </div>
     </>
   );

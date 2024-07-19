@@ -1,29 +1,40 @@
-/* Add this CSS to your stylesheet */
-/* Navbar Brand */
-.navbar-brand img {
-    transition: transform 0.3s ease;
+/* Navbar Background and Padding */
+.navbar {
+    background-color: #f8f9fa; /* Light gray background */
+    padding-top: 1rem; /* Adjust top padding */
+    padding-bottom: 1rem; /* Adjust bottom padding */
 }
-.navbar-brand img:hover {
-    transform: scale(1.1);
+
+/* Navbar Brand Logo */
+.navbar-brand img {
+    width: 120px; /* Adjust logo width */
+    height: auto; /* Maintain aspect ratio */
 }
 
 /* Navbar Links */
-.navbar-nav .nav-link {
-    color: #333;
-    font-weight: bold;
-    transition: color 0.3s ease;
+.nav-link {
+    color: #343a40; /* Dark color for links */
+    font-weight: bold; /* Bold font weight */
+    margin-right: 10px; /* Adjust right margin */
 }
-.navbar-nav .nav-link:hover {
-    color: #f57c00;
+
+.nav-link:hover {
+    color: #ffc107; /* Hover color */
+    text-decoration: none; /* Remove underline on hover */
 }
 
 /* Logout Button */
 .btn-logout {
-    background-color: #f57c00;
-    border-color: #f57c00;
-    color: #fff;
-    transition: background-color 0.3s ease;
+    background-color: #ffc107; /* Yellow background color */
+    color: #343a40; /* Dark text color */
+    border: none; /* Remove border */
+    padding: 8px 16px; /* Adjust padding */
+    font-weight: bold; /* Bold font weight */
+    border-radius: 8px; /* Rounded corners */
 }
+
 .btn-logout:hover {
-    background-color: #e65100;
+    background-color: #ffca28; /* Lighter shade on hover */
+    color: #343a40; /* Dark text color */
+    text-decoration: none; /* Remove underline on hover */
 }

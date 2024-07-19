@@ -1,76 +1,213 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { editUserProfile, addProfileApi, userProfileApi } from '../services/allAPI';
+import { BASE_URL } from '../services/baseurl';
 
-function Profile() {
-    // Initialize profile data with empty strings or retrieve from localStorage
-    const [profileData, setProfileData] = useState({
-        fullName: localStorage.getItem('fullName') || '',
-        email: localStorage.getItem('email') || '',
-        courseName: localStorage.getItem('courseName') || '',
-        syllabus: localStorage.getItem('syllabus') || '',
-        collegeName: localStorage.getItem('collegeName') || ''
+// Dummy profile image URL or placeholder
+const dummyProfileImage = 'https://t4.ftcdn.net/jpg/04/83/90/95/360_F_483909569_OI4LKNeFgHwvvVju60fejLd9gj43dIcd.jpg';
+
+function Myprofile({ userName, email, onProfileAdded }) {
+    const [userProfile, setUserProfile] = useState({
+        universityName: '',
+        courseName: '',
+        syllabus: '',
+        collegeName: '',
+        profileImage: dummyProfileImage // Initialize with dummy profile image
     });
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [preview, setPreview] = useState(dummyProfileImage); // Initialize preview with dummy image URL
+    const [isEdit, setIsEdit] = useState(false);
 
-    // Update profile data and localStorage
+    useEffect(() => {
+        // Fetch user profile data from API on component mount
+        getUserProfile();
+    }, []);
+
+    const getUserProfile = async () => {
+        const token = sessionStorage.getItem("token");
+        if (!token) {
+            setError("User is not authenticated.");
+            setLoading(false);
+            return;
+        }
+
+        const reqHeader = {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        };
+
+        try {
+            const result = await userProfileApi(reqHeader);
+            if (result.data && result.data.length > 0) {
+                setUserProfile(result.data[0]);
+                setPreview(`${BASE_URL}/uploads/${result.data[0].profileImage}`);
+                setIsEdit(true);
+            } else {
+                setUserProfile({
+                    universityName: '',
+                    courseName: '',
+                    syllabus: '',
+                    collegeName: '',
+                    profileImage: dummyProfileImage // Set dummy profile image if no data found
+                });
+                setIsEdit(false);
+            }
+            setLoading(false);
+        } catch (error) {
+            setError("Failed to fetch user profile.");
+            setLoading(false);
+        }
+    };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setProfileData(prevData => ({
-            ...prevData,
-            [name]: value
-        }));
-        localStorage.setItem(name, value);
+        setUserProfile({ ...userProfile, [name]: value });
     };
 
-    
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Profile data submitted:', profileData);
-        // You can perform further actions here, such as sending data to a backend if needed
-        
-        
-        alert('Profile has been updated!');
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setUserProfile({ ...userProfile, profileImage: file });
+        setPreview(URL.createObjectURL(file));
     };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const token = sessionStorage.getItem("token");
+        const reqHeader = {
+            "Authorization": `Bearer ${token}`
+        };
+
+        const formData = new FormData();
+        formData.append("universityName", userProfile.universityName);
+        formData.append("courseName", userProfile.courseName);
+        formData.append("syllabus", userProfile.syllabus);
+        formData.append("collegeName", userProfile.collegeName);
+        if (userProfile.profileImage instanceof File) {
+            formData.append("profileImage", userProfile.profileImage);
+        }
+
+        try {
+            let response;
+            if (isEdit) {
+                response = await editUserProfile(userProfile._id, formData, reqHeader);
+            } else {
+                response = await addProfileApi(formData, reqHeader);
+            }
+
+            if (response.status === 200) {
+                alert("Profile saved successfully");
+                onProfileAdded(); // Refresh profile data after adding/editing profile
+            } else {
+                alert("Failed to save profile");
+            }
+        } catch (error) {
+            console.error("Failed to save profile:", error);
+            alert("Failed to save profile");
+        }
+    };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
 
     return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card shadow p-3">
-                        <h2 className="text-center">Profile</h2>
-                        <form onSubmit={handleSubmit}>
-                            <div className="mb-3">
-                                <label htmlFor="fullName" className="form-label">Full Name:</label>
-                                <input type="text" id="fullName" name="fullName" className="form-control" value={profileData.fullName} onChange={handleChange} />
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="email" className="form-label">Email:</label>
-                                <input type="email" id="email" name="email" className="form-control" value={profileData.email} onChange={handleChange} />
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="courseName" className="form-label">Course Name:</label>
-                                <input type="text" id="courseName" name="courseName" className="form-control" value={profileData.courseName} onChange={handleChange} />
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="syllabus" className="form-label">Syllabus:</label>
-                                <input type="text" id="syllabus" name="syllabus" className="form-control" value={profileData.syllabus} onChange={handleChange} />
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="collegeName" className="form-label">College Name:</label>
-                                <input type="text" id="collegeName" name="collegeName" className="form-control" value={profileData.collegeName} onChange={handleChange} />
-                            </div>
-                            <button type="submit" className="btn btn-success w-100">Update</button>
-                        </form>
+        <div className="card profile-card" style={{ width: '300px', margin: 'auto' }}>
+            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                <label htmlFor="profileImage">
+                    <input
+                        type="file"
+                        id="profileImage"
+                        name="profileImage"
+                        className="form-control"
+                        onChange={handleImageChange}
+                        style={{ display: "none" }}
+                    />
+                    <img
+                        src={preview}
+                        alt="Profile Preview"
+                        className="card-img-top rounded-circle"
+                        style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+                    />
+                </label>
+            </div>
+            <div className="card-body">
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="userName" className="form-label">Username: </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder='username'
+                            value={userName}
+                            readOnly
+                        />
                     </div>
-                </div>
+                    <div className="mb-3">
+                        <label htmlFor="email" className="form-label">Email: </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder='email'
+                            value={email}
+                            readOnly
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="universityName" className="form-label">University:</label>
+                        <input
+                            type="text"
+                            id="universityName"
+                            name="universityName"
+                            className="form-control"
+                            value={userProfile.universityName}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="courseName" className="form-label">Course:</label>
+                        <input
+                            type="text"
+                            id="courseName"
+                            name="courseName"
+                            className="form-control"
+                            value={userProfile.courseName}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="syllabus" className="form-label">Syllabus:</label>
+                        <input
+                            type="text"
+                            id="syllabus"
+                            name="syllabus"
+                            className="form-control"
+                            value={userProfile.syllabus}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="collegeName" className="form-label">College:</label>
+                        <input
+                            type="text"
+                            id="collegeName"
+                            name="collegeName"
+                            className="form-control"
+                            value={userProfile.collegeName}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <button type="submit" className="btn btn-primary">
+                        {isEdit ? "Update" : "Add"} Profile
+                    </button>
+                </form>
             </div>
         </div>
     );
 }
 
-export default Profile;
-
-
-
-
-
-
-
+export default Myprofile;

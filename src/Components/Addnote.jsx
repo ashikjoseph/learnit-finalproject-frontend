@@ -29,7 +29,7 @@ function Addnote() {
         console.log("==get note details==")
         const { noteTitle, notePdf, courseName, subjectName, paypalEmail, noteDescription, noteThumbnail } = noteDetails;
         if (!noteTitle || !notePdf || !courseName || !subjectName || !paypalEmail || !noteDescription || !noteThumbnail) {
-           
+            alert("Please fill the form completely");
         }
         else {
             const reqBody = new FormData();

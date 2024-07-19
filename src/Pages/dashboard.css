@@ -1,0 +1,44 @@
+.dashboard-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-header h2 {
+    margin-bottom: 0;
+  }
+  
+  .dashboard-header span {
+    color: #dc3545;
+  }
+  
+  .notebank-button {
+    background-color: #28a745;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+  
+  .dashboard-row {
+    margin-top: 20px;
+  }
+  
+  .dashboard-col {
+    margin-bottom: 20px;
+  }
+  
+
+  
