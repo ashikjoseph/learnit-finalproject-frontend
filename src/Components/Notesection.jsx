@@ -6,11 +6,20 @@ import { BASE_URL } from '../services/baseurl';
 import { useNavigate } from 'react-router-dom';
 import * as pdfjsLib from 'pdfjs-dist/webpack';
 import './Notesection.css';
+import { useEffect } from 'react';
 
 function Notesection({ note }) {
     const [show, setShow] = useState(false);
     const [pdfPageSrc, setPdfPageSrc] = useState(null);
+    const [showButton, setShowbutton] = useState(false)
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        if (token) {
+            setShowbutton(true);
+        }
+    }, []);
 
     const handleClose = () => setShow(false);
     const handleShow = () => {
@@ -56,10 +65,10 @@ function Notesection({ note }) {
     return (
         <>
             <Card className="note-card" onClick={handleShow}>
-                <Card.Img 
-                    variant="top" 
-                    src={`${BASE_URL}/uploads/${note.noteThumbnail}`} 
-                    className="note-thumbnail" 
+                <Card.Img
+                    variant="top"
+                    src={`${BASE_URL}/uploads/${note.noteThumbnail}`}
+                    className="note-thumbnail"
                 />
                 <Card.Body>
                     <Card.Title>{note.subjectName}</Card.Title>
@@ -76,11 +85,11 @@ function Notesection({ note }) {
                 <Modal.Body>
                     <Row>
                         <Col md={6} lg={6}>
-                            <img 
-                                src={`${BASE_URL}/uploads/${note.noteThumbnail}`} 
-                                alt={note.noteTitle || "Note Thumbnail"} 
-                                className="modal-thumbnail" 
-                                width={"100%"} 
+                            <img
+                                src={`${BASE_URL}/uploads/${note.noteThumbnail}`}
+                                alt={note.noteTitle || "Note Thumbnail"}
+                                className="modal-thumbnail"
+                                width={"100%"}
                                 height={"300px"}
                             />
                         </Col>
@@ -91,10 +100,22 @@ function Notesection({ note }) {
                             <p><span className='fw-bolder'>Subject name:</span> {note.subjectName}</p>
                         </Col>
                     </Row>
-                    <div className="button-container">
-                        <Button onClick={handleBuyNow} className="action-button">Buy Now</Button>
-                        <Button onClick={previewPdfInNewTab} className="action-button">Preview First Page <i className="fa-solid fa-eye ms-2"></i></Button>
-                    </div>
+
+                    {
+                        showButton ? (
+                            <div className="button-container">
+                                <Button onClick={handleBuyNow} className="action-button">Buy Now</Button>
+                                <Button onClick={previewPdfInNewTab} className="action-button">Preview First Page <i className="fa-solid fa-eye ms-2"></i></Button>
+                            </div>
+                        ) :
+                            (
+                                <div className="button-container">
+                                    <Button onClick={previewPdfInNewTab} className="action-button">Preview First Page <i className="fa-solid fa-eye ms-2"></i></Button>
+                                </div>
+                            )
+
+                    }
+
                 </Modal.Body>
             </Modal>
         </>

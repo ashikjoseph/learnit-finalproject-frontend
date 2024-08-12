@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ToastNotification from '../Components/ToastNotification';
-import './style1.css';
+import './payment.css';
 
 function Payment() {
     const [amount] = useState('100'); // Setting amount to a fixed value of '100'

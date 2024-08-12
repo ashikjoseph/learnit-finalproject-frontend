@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import authImage from '../Assets/istockphoto-1409722748-170667a.webp'
-import { Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { loginAPI, registerAPI } from '../services/allAPI';
 import { isAuthTokenContext } from '../context/ContextShare';
 
@@ -69,13 +69,41 @@ function Auth({ register }) {
     }
   }
 
+  const handleClick = () => {
+    navigate('/');
+  };
+
   return (
     <>
       <div className='d-flex justify-content-center align-items-center' style={{ width: "100%", height: "100vh" }}>
         <div className='w-75 container'>
-          <Link to="/" style={{ textDecoration: "none" }}><i class="fa-solid fa-arrow-left me-2"></i>
-            Back to home
-          </Link>
+          <Button
+            onClick={handleClick}
+            variant="primary"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              padding: '8px 16px', 
+              fontSize: '14px',    
+              borderRadius: '3px', 
+              boxShadow: '0 3px 5px rgba(0, 0, 0, 0.1)', 
+              transition: 'background-color 0.3s ease',
+              color: '#ffffff',
+              backgroundColor: '#007bff',
+              border: '1px solid #007bff',
+              cursor: 'pointer'
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.backgroundColor = '#0056b3'; // Darker blue on hover
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.backgroundColor = '#007bff'; // Reverts to original background color
+            }}
+          >
+            <i className="fa-solid fa-arrow-left" style={{ marginRight: '6px' }}></i> 
+            Back to Home
+          </Button>
+
           <div className='card bg-light p-5 mt-3'>
             <div className='row align-items-center'>
               <div className='col-lg-6 col-md-6'>

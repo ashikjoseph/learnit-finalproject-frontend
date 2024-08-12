@@ -8,8 +8,15 @@ import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import Header from '../Components/Header';
 import { homeNoteApi } from '../services/allAPI';
-import './home.css'; // Import external CSS file
+import './home.css';
 import Notesection from '../Components/Notesection';
+import scienceIcon from '../Assets/science icon.png';
+import businessIcon from '../Assets/business icon.png';
+import mathIcon from '../Assets/mathematics icon.png';
+import humanitiesIcon from '../Assets/humanities icon.webp';
+import literatureIcon from '../Assets/literature icon 1.jpg';
+import codingIcon from '../Assets/coding icon 1.jpg';
+
 
 function Home() {
     const [homeNote, setHomeNote] = useState([]);
@@ -34,6 +41,15 @@ function Home() {
             console.error('Error fetching home notes:', error);
         }
     };
+
+    const subjects = [
+        { name: 'Science', icon: scienceIcon },
+        { name: 'Business', icon: businessIcon },
+        { name: 'Mathematics', icon: mathIcon },
+        { name: 'Humanities', icon: humanitiesIcon },
+        { name: 'Literature', icon: literatureIcon },
+        { name: 'Coding', icon: codingIcon },
+    ];
 
     return (
         <>
@@ -68,9 +84,9 @@ function Home() {
                         <Card className='scale-on-hover'>
                             <Card.Img variant='top' src={img1} />
                             <Card.Body>
-                                <Card.Title>Get learned</Card.Title>
+                                <Card.Title>Unlock Knowledge</Card.Title>
                                 <Card.Text>
-                                    Thousands of people are searching for notes on learnIt every day. Including yours! Some documents even sell hundreds of times.
+                                    Instant access to premium notes! A small payment unlocks high-quality materials to enhance your learning.
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -79,9 +95,9 @@ function Home() {
                         <Card className='scale-on-hover'>
                             <Card.Img variant='top' src={img2} />
                             <Card.Body>
-                                <Card.Title>Make money easily</Card.Title>
+                                <Card.Title>Earn While You Learn</Card.Title>
                                 <Card.Text>
-                                    Each time your document is sold, you earn money. This money is immediately credited to your account.
+                                    Monetize your hard work! Upload your notes and earn money every time someone buys them. Your effort pays off, literally.
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -90,9 +106,9 @@ function Home() {
                         <Card className='scale-on-hover'>
                             <Card.Img variant='top' src={img3} />
                             <Card.Body>
-                                <Card.Title>Easy uploading</Card.Title>
+                                <Card.Title>Seamless Uploads</Card.Title>
                                 <Card.Text>
-                                    In less than a minute, you have created an account, set the price of your document and started selling. Let's get work with learnIt.
+                                    Upload your notes in just a few clicks. Our user-friendly interface ensures you can share your knowledge quickly and effortlessly.
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -100,10 +116,26 @@ function Home() {
                 </Row>
             </div>
 
+            <div className="featured-subjects-container">
+                <h2 className="featured-subjects-title">Featured Subjects</h2>
+                <Row className="featured-subjects-row">
+                    {subjects.map((subject, index) => (
+                        <Col key={index} xs={12} sm={6} md={4} lg={3}>
+                            <Card className="subject-card">
+                                <Card.Img variant="top" src={subject.icon} alt={subject.name} />
+                                <Card.Body>
+                                    <Card.Title className="subject-title">{subject.name}</Card.Title>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
+            </div>
+
             <div className='section-container'>
                 <h1 className='section-title'>Recent Uploads</h1>
                 <div className='marquee-container'>
-                <marquee scrollAmount={20}>
+                    <marquee scrollAmount={20}>
                         <div className='d-flex mt-5 mb-5'>
                             {
                                 homeNote.length > 0 ?

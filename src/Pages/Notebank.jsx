@@ -8,8 +8,8 @@ import { useContext } from 'react';
 import './notebank.css';
 
 function Notebank() {
-  const [isToken, setIsToken] = useState(false)
-  const [searchKey, setSearchKey] = useState("")
+  const [isToken, setIsToken] = useState(false);
+  const [searchKey, setSearchKey] = useState("");
   const [allNote, setAllNote] = useState([]);
   const { setIsAuthToken } = useContext(isAuthTokenContext);
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ function Notebank() {
         const result = await allNoteApi(searchKey, reqHeader);
         console.log('==result for all notes==');
         console.log(result);
-        setAllNote(result.data)
+        setAllNote(result.data);
       } catch (error) {
         console.error('Error fetching notes:', error);
       }
@@ -38,10 +38,11 @@ function Notebank() {
 
   useEffect(() => {
     if (sessionStorage.getItem("token")) {
-      setIsToken(true)
+      setIsToken(true);
     }
-  })
-  console.log("==searchkey==", searchKey)
+  });
+
+  console.log("==searchkey==", searchKey);
 
   const handleLogout = () => {
     sessionStorage.removeItem("token");
@@ -54,7 +55,7 @@ function Notebank() {
     <>
       <div className="notebank-container">
         <Link to="/dashboard" className="dashboard-button">
-        <i class="fa-solid fa-arrow-right" style={{marginRight:"5px"}}></i>Dashboard
+          <i className="fa-solid fa-arrow-right" style={{ marginRight: "5px" }}></i>Dashboard
         </Link>
         <button className='btn btn-warning btn-logout' onClick={handleLogout}>Logout</button>
         <h2 className="notebank-header">Notebank</h2>
