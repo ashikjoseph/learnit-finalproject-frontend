@@ -1,4 +1,4 @@
-/* styles.css */
+
 
 /* Home Container */
 .home-container {
@@ -6,13 +6,20 @@
     height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: #ffffff;
-    padding: 0 20px; /* Adjust padding as needed */
+    padding: 0 20px; 
+}
+
+@media (max-width: 768px) {
+    .home-container {
+        background-position: top center; 
+    }
 }
 
 /* Home Title */
@@ -20,15 +27,15 @@
     font-weight: bold;
     font-size: 50px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    margin-top: 20px; /* Adjust as needed */
+    margin-top: 20px; 
 }
 
 /* Home Subtitle */
 .home-subtitle {
     font-size: 24px;
-    margin-top: 20px; /* Adjust margin as needed */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Increased shadow for visibility */
-    color: white; /* Set text color to white for better contrast */
+    margin-top: 20px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
+    color: white; 
 }
 
 
@@ -36,7 +43,7 @@
 .button-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px; /* Adjust as needed */
+    margin-top: 20px; 
 }
 
 /* Button Styles */
@@ -54,24 +61,24 @@
 
 /* Section Container */
 .section-container {
-    margin: 3rem 0; /* Increased vertical spacing around the section */
-    padding: 2rem; /* Padding inside the section for a clean layout */
-    background-color: #f5f5f5; /* Slightly off-white background for a professional look */
-    border-radius: 10px; /* More rounded corners for a softer appearance */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin: 3rem 0; 
+    padding: 2rem; 
+    background-color: #f5f5f5; 
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
 }
 
 /* Section Title */
 .section-title {
-    font-size: 2rem; /* Professional font size */
-    font-weight: 600; /* Medium boldness for a balanced look */
-    color: #333333; /* Dark grey for a sophisticated contrast */
-    margin-bottom: 1.5rem; /* Spacing below the title */
-    text-align: center; /* Center-align the title */
-    text-transform: capitalize; /* Capitalize for a professional touch */
-    letter-spacing: 0.5px; /* Slightly increased letter spacing */
-    position: relative; /* For positioning pseudo-elements */
-    padding-bottom: 8px; /* Space for optional underline effect */
+    font-size: 2rem; 
+    font-weight: 600; 
+    color: #333333; 
+    margin-bottom: 1.5rem; 
+    text-align: center; 
+    text-transform: capitalize; 
+    letter-spacing: 0.5px; 
+    position: relative; 
+    padding-bottom: 8px; 
 }
 
 /* Card Container */
@@ -91,8 +98,8 @@
 
 /* Marquee Container */
 .marquee-container {
-    overflow: hidden; /* Hide overflow */
-    width: 100%; /* Full width */
+    overflow: hidden; 
+    width: 100%; 
 }
 
 /* Notes Container */
@@ -104,16 +111,16 @@
 
 /* Marquee Content */
 .marquee-container marquee {
-    display: flex; /* Flex display for horizontal scrolling */
-    padding: 10px 0; /* Padding top and bottom */
+    display: flex; 
+    padding: 10px 0; 
 }
 
 .marquee-container marquee div {
-    margin-right: 20px; /* Right margin between items */
+    margin-right: 20px; 
 }
 
 .marquee-container marquee p {
-    color: #868e96; /* Light text color */
+    color: #868e96; 
 }
 
 /* Note Item */
@@ -167,7 +174,7 @@
 .featured-subjects-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem; /* Consistent spacing between subjects */
+    gap: 1.5rem; 
     justify-content: center;
 }
 

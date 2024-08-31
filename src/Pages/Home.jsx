@@ -151,35 +151,44 @@ function Home() {
                 </div>
             </div>
 
-            <div className='review-container'>
-                <div className='review'>
-                    <img
-                        src='https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg'
-                        alt='Profile Picture'
-                    />
-                    <h3>John Doe</h3>
-                    <p>Los Angeles, USA</p>
-                    <p>"LearnIt helped me immensely in my studies. The class notes are comprehensive and well-structured."</p>
-                </div>
-                <div className='review'>
-                    <img
-                        src='https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp'
-                        alt='Profile Picture'
-                    />
-                    <h3>Jane Smith</h3>
-                    <p>New York City, USA</p>
-                    <p>"I've been using LearnIt for a while now, and it's been a game-changer for my academic performance. Highly recommended!"</p>
-                </div>
-                <div className='review'>
-                    <img
-                        src='https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg'
-                        alt='Profile Picture'
-                    />
-                    <h3>David Lee</h3>
-                    <p>London, UK</p>
-                    <p>"LearnIt has made studying so much easier for me. The class notes are clear and concise, making revision a breeze."</p>
-                </div>
+           <div className='review-container'>
+    <Row>
+        <Col xs={12} md={4} className='mb-4'>
+            <div className='review'>
+                <img
+                    src='https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg'
+                    alt='Profile Picture'
+                />
+                <h3>John Doe</h3>
+                <p>Los Angeles, USA</p>
+                <p>"LearnIt helped me immensely in my studies. The class notes are comprehensive and well-structured."</p>
             </div>
+        </Col>
+        <Col xs={12} md={4} className='mb-4'>
+            <div className='review'>
+                <img
+                    src='https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp'
+                    alt='Profile Picture'
+                />
+                <h3>Jane Smith</h3>
+                <p>New York City, USA</p>
+                <p>"I've been using LearnIt for a while now, and it's been a game-changer for my academic performance. Highly recommended!"</p>
+            </div>
+        </Col>
+        <Col xs={12} md={4} className='mb-4'>
+            <div className='review'>
+                <img
+                    src='https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg'
+                    alt='Profile Picture'
+                />
+                <h3>David Lee</h3>
+                <p>London, UK</p>
+                <p>"LearnIt has made studying so much easier for me. The class notes are clear and concise, making revision a breeze."</p>
+            </div>
+        </Col>
+    </Row>
+</div>
+
         </>
     );
 }

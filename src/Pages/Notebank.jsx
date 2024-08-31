@@ -73,7 +73,7 @@ function Notebank() {
         <Row className='m-5'>
           {allNote.length > 0 ?
             allNote.map((item) => (
-              <Col sm={12} lg={3} md={3} key={item.id} className="notebank-row">
+              <Col sm={12} lg={4} md={6} key={item.id} className="notebank-row">
                 <Notesection note={item} />
               </Col>
             )) :
