@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('https://www.bhmpics.com/downloads/payment-Wallpapers/2.4597112.jpg'); 
+    background-image: url('/src/Assets/2.4597112.jpg'); 
     background-size: cover; 
     background-position: center; 
 }
