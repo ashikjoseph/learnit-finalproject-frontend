@@ -35,7 +35,7 @@ function Mydocs() {
     }
     const result = await deleteNoteApi(id, reqHeader)
     if (result.status === 200) {
-      alert("Project deleted successfully");
+      alert("Note deleted successfully");
       getUserNote()
     }
   }

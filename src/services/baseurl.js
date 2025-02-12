@@ -1,1 +1,2 @@
-export const BASE_URL= 'https://learnit-finalproject-backend.onrender.com';
+
+export const BASE_URL = process.env.REACT_APP_BASE_URL;
