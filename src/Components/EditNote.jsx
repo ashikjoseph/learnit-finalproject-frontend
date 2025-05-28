@@ -6,7 +6,6 @@ import { BASE_URL } from '../services/baseurl';
 import { editUserNoteApi } from '../services/allAPI';
 import { editNoteResponseContext } from '../context/ContextShare';
 
-
 function EditNote({ note }) {
     const { editNoteResponse, setEditNoteResponse } = useContext(editNoteResponseContext)
     const [preview, setPreview] = useState("")
@@ -18,7 +17,6 @@ function EditNote({ note }) {
         noteTitle: note.noteTitle,
         courseName: note.courseName,
         subjectName: note.subjectName,
-        paypalEmail: note.paypalEmail,
         noteDescription: note.noteDescription,
         noteThumbnail: ""
     })
@@ -32,7 +30,6 @@ function EditNote({ note }) {
             noteTitle: note.noteTitle,
             courseName: note.courseName,
             subjectName: note.subjectName,
-            paypalEmail: note.paypalEmail,
             noteDescription: note.noteDescription,
             noteThumbnail: ""
         })
@@ -40,8 +37,8 @@ function EditNote({ note }) {
     }
     const handleUpdate = async (e) => {
         e.preventDefault()
-        const { noteTitle, subjectName, courseName, paypalEmail, noteDescription, noteThumbnail, id } = noteDetails;
-        if (!noteTitle || !subjectName || !courseName || !paypalEmail || !noteDescription || !id) {
+        const { noteTitle, subjectName, courseName, noteDescription, noteThumbnail, id } = noteDetails;
+        if (!noteTitle || !subjectName || !courseName || !noteDescription || !id) {
             alert("Please fill the form completely")
         }
         else {
@@ -49,7 +46,6 @@ function EditNote({ note }) {
             reqBody.append("noteTitle", noteTitle);
             reqBody.append("subjectName", subjectName);
             reqBody.append("courseName", courseName);
-            reqBody.append("paypalEmail", paypalEmail);
             reqBody.append("noteDescription", noteDescription);
             preview ? reqBody.append("noteThumbnail", noteThumbnail) :
                 reqBody.append("noteThumbnail", note.noteThumbnail)
@@ -90,7 +86,7 @@ function EditNote({ note }) {
     }
     return (
         <>
-            <button className='btn'><i class="fa-solid fa-pen-to-square text-info" onClick={handleShow}></i></button>
+            <button className='btn'><i className="fa-solid fa-pen-to-square text-info" onClick={handleShow}></i></button>
 
             <Modal show={show} onHide={handleClose} size='md'>
                 <Modal.Header closeButton>
@@ -125,7 +121,7 @@ function EditNote({ note }) {
                                     className='form-control'
                                     placeholder='Note pdf'
                                     id="notePdf"
-                                    disabled 
+                                    disabled
                                 />
                             </div>
 
@@ -142,17 +138,11 @@ function EditNote({ note }) {
                                     type="text" className='form-control' placeholder='Subject Name' />
                             </div>
                             <div className='mt-3 w-100'>
-                                <input
-                                    value={noteDetails.paypalEmail}
-                                    onChange={((e) => setnoteDetails({ ...noteDetails, paypalEmail: e.target.value }))}
-                                    type="text" className='form-control' placeholder='Paypal email' />
-                            </div>
-                            <div className='mt-3 w-100'>
                                 <textarea
                                     value={noteDetails.noteDescription}
                                     onChange={((e) => setnoteDetails({ ...noteDetails, noteDescription: e.target.value }))}
                                     className='mt-3 w-100'
-                                    cols="30" rows="6" placeholder=' Note Description'>
+                                    cols="30" rows="6" placeholder='Note Description'>
                                 </textarea>
                             </div>
                         </div>
@@ -172,12 +162,3 @@ function EditNote({ note }) {
 }
 
 export default EditNote
-
-
-
-
-
-
-
-
-

@@ -7,7 +7,7 @@ import { addNoteAPI } from '../services/allAPI';
 import { addNoteResponseContext } from '../context/ContextShare';
 
 function Addnote() {
-    const {addNoteResponse, setAddNoteResponse}=useContext(addNoteResponseContext)
+    const { addNoteResponse, setAddNoteResponse } = useContext(addNoteResponseContext)
     const [preview, setPreview] = useState("")
     const [token, setToken] = useState("")
     const [noteDetails, setnoteDetails] = useState({
@@ -15,7 +15,6 @@ function Addnote() {
         notePdf: "",
         courseName: "",
         subjectName: "",
-        paypalEmail: "",
         noteDescription: "",
         noteThumbnail: ""
     })
@@ -24,11 +23,12 @@ function Addnote() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
     const handleAdd = async (e) => {
         e.preventDefault();
         console.log("==get note details==")
-        const { noteTitle, notePdf, courseName, subjectName, paypalEmail, noteDescription, noteThumbnail } = noteDetails;
-        if (!noteTitle || !notePdf || !courseName || !subjectName || !paypalEmail || !noteDescription || !noteThumbnail) {
+        const { noteTitle, notePdf, courseName, subjectName, noteDescription, noteThumbnail } = noteDetails;
+        if (!noteTitle || !notePdf || !courseName || !subjectName || !noteDescription || !noteThumbnail) {
             alert("Please fill the form completely");
         }
         else {
@@ -37,7 +37,6 @@ function Addnote() {
             reqBody.append('notePdf', notePdf)
             reqBody.append('courseName', courseName)
             reqBody.append('subjectName', subjectName)
-            reqBody.append('paypalEmail', paypalEmail)
             reqBody.append('noteDescription', noteDescription)
             reqBody.append('noteThumbnail', noteThumbnail)
 
@@ -62,15 +61,17 @@ function Addnote() {
             }
         }
     }
+
     useEffect(() => {
         if (noteDetails.noteThumbnail) {
-
             setPreview(URL.createObjectURL(noteDetails.noteThumbnail))
         }
     }, [noteDetails.noteThumbnail])
+
     useEffect(() => {
         setToken(sessionStorage.getItem("token"))
     }, [])
+
     const handleCloseClear = () => {
         setnoteDetails(
             {
@@ -78,15 +79,14 @@ function Addnote() {
                 notePdf: "",
                 courseName: "",
                 subjectName: "",
-                paypalEmail: "",
                 noteDescription: "",
                 noteThumbnail: ""
             }
         )
         setPreview("")
     }
-    return (
 
+    return (
         <>
             <Button variant="primary" onClick={handleShow}>
                 Add Note
@@ -133,12 +133,6 @@ function Addnote() {
                                     value={noteDetails.subjectName}
                                     onChange={((e) => setnoteDetails({ ...noteDetails, subjectName: e.target.value }))}
                                     type="text" className='form-control' placeholder='Subject Name' />
-                            </div>
-                            <div className='mt-3 w-100'>
-                                <input
-                                    value={noteDetails.paypalEmail}
-                                    onChange={((e) => setnoteDetails({ ...noteDetails, paypalEmail: e.target.value }))}
-                                    type="text" className='form-control' placeholder='Paypal email' />
                             </div>
                             <div className='mt-3 w-100'>
                                 <textarea

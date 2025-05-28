@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { editUserProfile, addProfileApi, userProfileApi } from '../services/allAPI';
+import { addProfileApi, editUserProfile,  userProfileApi } from '../services/allAPI';
 import { BASE_URL } from '../services/baseurl';
 
 // Dummy profile image URL or placeholder
@@ -11,6 +11,7 @@ function Myprofile({ userName, email, onProfileAdded }) {
         courseName: '',
         syllabus: '',
         collegeName: '',
+        paypalEmail: '',       // <-- Added Paypal Email field here
         profileImage: dummyProfileImage // Initialize with dummy profile image
     });
     const [loading, setLoading] = useState(true);
@@ -48,7 +49,8 @@ function Myprofile({ userName, email, onProfileAdded }) {
                     courseName: '',
                     syllabus: '',
                     collegeName: '',
-                    profileImage: dummyProfileImage // Set dummy profile image if no data found
+                    paypalEmail: '',    // Reset Paypal email if no data found
+                    profileImage: dummyProfileImage
                 });
                 setIsEdit(false);
             }
@@ -83,16 +85,21 @@ function Myprofile({ userName, email, onProfileAdded }) {
         formData.append("courseName", userProfile.courseName);
         formData.append("syllabus", userProfile.syllabus);
         formData.append("collegeName", userProfile.collegeName);
+        formData.append("paypalEmail", userProfile.paypalEmail); // Append Paypal email
         if (userProfile.profileImage instanceof File) {
             formData.append("profileImage", userProfile.profileImage);
         }
 
+  for (let pair of formData.entries()) {
+        console.log(`${pair[0]}:`, pair[1]);
+    }
+    
         try {
             let response;
             if (isEdit) {
                 response = await editUserProfile(userProfile._id, formData, reqHeader);
             } else {
-                response = await addProfileApi(formData, reqHeader);
+                response = await addProfileApi (formData, reqHeader);
             }
 
             if (response.status === 200) {
@@ -198,6 +205,17 @@ function Myprofile({ userName, email, onProfileAdded }) {
                             name="collegeName"
                             className="form-control"
                             value={userProfile.collegeName}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="paypalEmail" className="form-label">Paypal Email:</label>
+                        <input
+                            type="email"
+                            id="paypalEmail"
+                            name="paypalEmail"
+                            className="form-control"
+                            value={userProfile.paypalEmail}
                             onChange={handleChange}
                         />
                     </div>
