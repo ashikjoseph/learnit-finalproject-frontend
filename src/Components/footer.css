@@ -1,60 +1,60 @@
-/* Footer Container */
+
 .footer {
-    padding: 20px; /* Padding around the footer content */
-    background-color: #343a40; /* Dark background color */
-    color: #ffffff; /* White text color */
+    padding: 20px; 
+    background-color: #343a40; 
+    color: #ffffff; 
 }
 
-/* Footer Links */
+
 .footer ul.list-inline {
-    padding-left: 0; /* Remove default padding */
-    margin-bottom: 10px; /* Adjust bottom margin */
+    padding-left: 0; 
+    margin-bottom: 10px;
 }
 
 .footer ul.list-inline li {
-    display: inline-block; /* Display links horizontally */
-    margin-right: 15px; /* Adjust right margin between links */
+    display: inline-block; 
+    margin-right: 15px; 
 }
 
 .footer ul.list-inline li a {
-    color: #ffffff; /* White text color for links */
-    text-decoration: none; /* Remove underline */
+    color: #ffffff; 
+    text-decoration: none; 
 }
 
 .footer ul.list-inline li a:hover {
-    color: #ffc107; /* Yellow color on hover */
-    text-decoration: none; /* Remove underline on hover */
+    color: #ffc107; 
+    text-decoration: none; 
 }
 
-/* Social Icons */
+
 .footer ul.list-inline.d-flex.justify-content-end {
-    padding-left: 0; /* Remove default padding */
+    padding-left: 0; 
 }
 
 .footer ul.list-inline.d-flex.justify-content-end li {
-    margin-left: 15px; /* Adjust left margin between icons */
+    margin-left: 15px; 
 }
 
 .footer ul.list-inline.d-flex.justify-content-end li a {
-    color: #ffffff; /* White text color for icons */
-    font-size: 20px; /* Adjust icon size */
+    color: #ffffff; 
+    font-size: 20px; 
 }
 
 .footer ul.list-inline.d-flex.justify-content-end li a:hover {
-    color: #ffc107; /* Yellow color on hover */
-    text-decoration: none; /* Remove underline on hover */
+    color: #ffc107; 
+    text-decoration: none; 
 }
 
-/* Copyright Text */
+
 .footer p {
-    margin-bottom: 0; /* Remove bottom margin */
+    margin-bottom: 0; 
 }
 
 .footer p a {
-    color: #ffffff; /* White text color for link */
-    text-decoration: none; /* Remove underline */
+    color: #ffffff; 
+    text-decoration: none; 
 }
 
 .footer p a:hover {
-    text-decoration: underline; /* Underline on hover */
+    text-decoration: underline; 
 }

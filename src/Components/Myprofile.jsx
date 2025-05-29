@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { addProfileApi, editUserProfile,  userProfileApi } from '../services/allAPI';
 import { BASE_URL } from '../services/baseurl';
 
-// Dummy profile image URL or placeholder
+
 const dummyProfileImage = 'https://t4.ftcdn.net/jpg/04/83/90/95/360_F_483909569_OI4LKNeFgHwvvVju60fejLd9gj43dIcd.jpg';
 
 function Myprofile({ userName, email, onProfileAdded }) {
@@ -11,16 +11,16 @@ function Myprofile({ userName, email, onProfileAdded }) {
         courseName: '',
         syllabus: '',
         collegeName: '',
-        paypalEmail: '',       // <-- Added Paypal Email field here
-        profileImage: dummyProfileImage // Initialize with dummy profile image
+        paypalEmail: '',      
+        profileImage: dummyProfileImage 
     });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [preview, setPreview] = useState(dummyProfileImage); // Initialize preview with dummy image URL
+    const [preview, setPreview] = useState(dummyProfileImage); 
     const [isEdit, setIsEdit] = useState(false);
 
     useEffect(() => {
-        // Fetch user profile data from API on component mount
+        
         getUserProfile();
     }, []);
 
@@ -49,7 +49,7 @@ function Myprofile({ userName, email, onProfileAdded }) {
                     courseName: '',
                     syllabus: '',
                     collegeName: '',
-                    paypalEmail: '',    // Reset Paypal email if no data found
+                    paypalEmail: '',    
                     profileImage: dummyProfileImage
                 });
                 setIsEdit(false);
@@ -85,7 +85,7 @@ function Myprofile({ userName, email, onProfileAdded }) {
         formData.append("courseName", userProfile.courseName);
         formData.append("syllabus", userProfile.syllabus);
         formData.append("collegeName", userProfile.collegeName);
-        formData.append("paypalEmail", userProfile.paypalEmail); // Append Paypal email
+        formData.append("paypalEmail", userProfile.paypalEmail); 
         if (userProfile.profileImage instanceof File) {
             formData.append("profileImage", userProfile.profileImage);
         }
@@ -104,7 +104,7 @@ function Myprofile({ userName, email, onProfileAdded }) {
 
             if (response.status === 200) {
                 alert("Profile saved successfully");
-                onProfileAdded(); // Refresh profile data after adding/editing profile
+                onProfileAdded(); 
             } else {
                 alert("Failed to save profile");
             }

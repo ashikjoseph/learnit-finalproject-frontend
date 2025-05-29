@@ -1,47 +1,47 @@
-/* Navbar Background and Padding */
+
 .navbar {
-    background-color: #ffffff; /* White background for a clean look */
-    padding: 16px; /* Consistent padding */
+    background-color: #ffffff; 
+    padding: 16px; 
 }
 
-/* Navbar Brand Logo */
+
 .navbar-brand img {
-    width: 80px; /* Smaller logo width */
-    height: auto; /* Maintain aspect ratio */
-    transition: transform 0.3s ease; /* Smooth transform transition */
+    width: 80px; 
+    height: auto; 
+    transition: transform 0.3s ease; 
 }
 
 .navbar-brand img:hover {
-    transform: scale(1.05); /* Slightly enlarge logo on hover */
+    transform: scale(1.05);
 }
 
-/* Navbar Links */
+
 .nav-link {
-    color: #333333; /* Dark gray color */
-    font-size: 14px; /* Simple, readable font size */
-    margin-right: 12px; /* Space between links */
-    text-decoration: none; /* Remove underline */
-    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and transform */
+    color: #333333; 
+    font-size: 14px; 
+    margin-right: 12px; 
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease; 
 }
 
 .nav-link:hover {
-    color: #007bff; /* Blue color on hover */
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Subtle text shadow for depth */
-    transform: translateY(-2px); /* Slight lift effect */
+    color: #007bff; 
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); 
+    transform: translateY(-2px); 
 }
 
-/* Logout Button */
+
 .btn-logout {
-    background-color: #007bff; /* Blue background for a modern look */
-    color: #ffffff; /* White text for contrast */
-    border: none; /* Clean look with no border */
-    padding: 8px 16px; /* Adequate padding for clickability */
-    border-radius: 4px; /* Slightly rounded corners */
-    font-size: 14px; /* Font size for balance */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease; /* Smooth background color transition */
+    background-color: #007bff;
+    color: #ffffff;
+    border: none; 
+    padding: 8px 16px; 
+    border-radius: 4px; 
+    font-size: 14px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
 }
 
 .btn-logout:hover {
-    background-color: #0056b3; /* Darker blue on hover for a professional effect */
+    background-color: #0056b3; 
 }
